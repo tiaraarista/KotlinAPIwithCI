@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Kotlin API with CI</string>
+    <string name="tambah">Tambah</string>
+    <string name="alamat">Alamat</string>
+    <string name="name">Name</string>
+    <string name="phone">Phone</string>
+    <string name="no_hp">No Hp :</string>
+    <string name="tiara">Tiara</string>
+    <string name="hapus">Hapus</string>
+    <string name="namaa">Nama :</string>
+    <string name="alamatt">Alamat :</string>
+</resources>

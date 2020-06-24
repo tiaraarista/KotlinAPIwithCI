@@ -3,6 +3,7 @@ package com.tiara.kotlinapiwithci
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.tiara.kotlinapiwithci.model.DataItem
 import com.tiara.kotlinapiwithci.presenter.CrudView
 import com.tiara.kotlinapiwithci.presenter.Presenter
@@ -20,12 +21,33 @@ class UpdateAddActivity : AppCompatActivity(), CrudView {
         presenter = Presenter(this)
         val itemDataItem = intent.getSerializableExtra("dataItem")
         if (itemDataItem == null){
-            btnAction.text = "Tambah"
+            btnAction.text = "Add"
             btnAction.onClick {
-                presenter.addData(
-                    etName.text.toString(),
-                    etPhone.text.toString(),
-                    etAlamat.text.toString())
+
+                val name: String = etName.text.toString()
+                val phone: String = etPhone.text.toString()
+                val alamat: String = etAlamat.text.toString()
+
+                if (name.isNullOrEmpty()){
+                    //jika form Nama belum di isi / masih kosong
+                    etName.error="Name field is required"
+                    etName.requestFocus()
+                }else if (phone.isNullOrEmpty()){
+                    //jika form No HP belum di isi / masih kosong
+                    etPhone.error="Phone field is required"
+                    etPhone.requestFocus()
+                }else if (alamat.isNullOrEmpty()){
+                    //jika form Alamat belum di isi / masih kosong
+                    etAlamat.error="Address field is required"
+                    etAlamat.requestFocus()
+                }else{
+                    presenter.addData(
+                        etName.text.toString(),
+                        etPhone.text.toString(),
+                        etAlamat.text.toString())
+                    //jika form sudah terisi semua
+                    Toast.makeText(applicationContext, "Success Add Data", Toast.LENGTH_SHORT).show()
+                }
             }
         }else if (itemDataItem != null){
             btnAction.text = "Update"
@@ -34,12 +56,33 @@ class UpdateAddActivity : AppCompatActivity(), CrudView {
             etPhone.setText(item?.staffHp.toString())
             etAlamat.setText(item?.staffAlamat.toString())
             btnAction.onClick {
-                presenter.updateData(
-                    item?.staffId ?: "",
-                    etName.text.toString(),
-                    etPhone.text.toString(),
-                    etAlamat.text.toString())
-                finish()
+
+                val name: String = etName.text.toString()
+                val phone: String = etPhone.text.toString()
+                val alamat: String = etAlamat.text.toString()
+
+                if (name.isNullOrEmpty()){
+                    //jika form Nama belum di isi / masih kosong
+                    etName.error="Name field is required"
+                    etName.requestFocus()
+                }else if (phone.isNullOrEmpty()){
+                    //jika form No HP belum di isi / masih kosong
+                    etPhone.error="Phone field is required"
+                    etPhone.requestFocus()
+                }else if (alamat.isNullOrEmpty()){
+                    //jika form Alamat belum di isi / masih kosong
+                    etAlamat.error="Address field is required"
+                    etAlamat.requestFocus()
+                }else{
+                    presenter.updateData(
+                        item?.staffId ?: "",
+                        etName.text.toString(),
+                        etPhone.text.toString(),
+                        etAlamat.text.toString())
+
+                    //jika form sudah terisi semua
+                    Toast.makeText(applicationContext, "Success Update Data", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }

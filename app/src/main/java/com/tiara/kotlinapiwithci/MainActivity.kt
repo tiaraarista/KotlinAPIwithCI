@@ -2,6 +2,7 @@ package com.tiara.kotlinapiwithci
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.tiara.kotlinapiwithci.adapter.DataAdapter
 import com.tiara.kotlinapiwithci.model.DataItem
 import com.tiara.kotlinapiwithci.presenter.CrudView
@@ -38,6 +39,7 @@ class MainActivity : AppCompatActivity(), CrudView {
     }
     override fun onSuccessDelete(msg: String) {
         presenter.getData()
+        Toast.makeText(applicationContext, "Success Delete Data", Toast.LENGTH_SHORT).show()
     }
     override fun onErrorDelete(msg: String) {
         alert {
